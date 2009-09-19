@@ -69,24 +69,22 @@ public class IndexerAndSearcher {
 	 */
 	public void startMemoryIndex() throws CorruptIndexException, LockObtainFailedException, IOException {
 		// Arquivo de índice sem limite de tamanho
-		IndexWriter memoryIndexWriter = new IndexWriter(indexDirectory, analyzer, true,
+		IndexWriter indexWriter = new IndexWriter(indexDirectory, analyzer, true,
 				IndexWriter.MaxFieldLength.UNLIMITED);
 		
-		/*
-		 * Para gravar o índice num arquivo em disco ao invés da RAM
-		IndexWriter fileIndexWriter = new IndexWriter("/tmp/testindex", analyzer, true, 
-				IndexWriter.MaxFieldLength.UNLIMITED);
-		*/
+		//Para gravar o índice num arquivo em disco ao invés da RAM
+//		IndexWriter indexWriter = new IndexWriter("/tmp/testindex", analyzer, true, 
+//				IndexWriter.MaxFieldLength.UNLIMITED);
 		
 		// Adicionando alguns documentos ao índice
-		addDocument(memoryIndexWriter, "Java é no Café com Tapioca em Fortaleza"); 
-		addDocument(memoryIndexWriter, "Ceará Java Users Group");
-		addDocument(memoryIndexWriter, "Giran Soluções e Ensino");
-		addDocument(memoryIndexWriter, "Espírito Santo Java Users Group");
-		addDocument(memoryIndexWriter, "Paulo César Machado Jeveaux");
+		addDocument(indexWriter, "Java é no Café com Tapioca em Fortaleza"); 
+		addDocument(indexWriter, "Ceará Java Users Group");
+		addDocument(indexWriter, "Giran Soluções e Ensino");
+		addDocument(indexWriter, "Espírito Santo Java Users Group");
+		addDocument(indexWriter, "Paulo César Machado Jeveaux");
 		
 		// Fecha o arquivo
-		memoryIndexWriter.close();
+		indexWriter.close();
 	}
 	
 	private void addDocument(IndexWriter indexWriter, String text) throws IOException {
